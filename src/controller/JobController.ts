@@ -79,9 +79,9 @@ export async function getAllUnPaidJobs(req: Request | any, res: Response, next: 
 
 export async function payForJob(req: Request | any, res: Response, next: NextFunction) {
   try {
-    const { jobId } = req.param
+    const { job_Id } = req.param
     const profileId = req.user;
-    const validJob: any = await JobInstance.findOne({ where: { jobId: jobId } })
+    const validJob: any = await JobInstance.findOne({ where: { jobId: job_Id } })
     const validUser: any = await ProfileInstance.findOne({ where: { profileId: profileId } })
     let { balance } = validUser;
     const { amount } = req.body
@@ -101,7 +101,7 @@ export async function payForJob(req: Request | any, res: Response, next: NextFun
       { where: { profileId } })
 
     await JobInstance.update({ paid: true },
-      { where: { jobId } })
+      { where: { jobId:job_Id } })
 
     res.status(201).json({
       message: 'You have successfully added a job',
