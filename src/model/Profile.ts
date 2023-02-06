@@ -63,12 +63,12 @@ ProfileInstance.init(
   }
 );
 
-// ProfileInstance.hasMany(ContractInstance, {foreignKey:"ContractorId", as:"contractor"});
-// ContractInstance.belongsTo(ProfileInstance, {foreignKey:"ContractorId", as:"contractor"});
-// // ProfileInstance.hasMany(ContractInstance, {foreignKey:"ClientId", as:"client"});
-// // ContractInstance.belongsTo(ProfileInstance, {foreignKey:"ContractorId", as:"client"});
-// ContractInstance.hasMany(JobInstance, {foreignKey:"ContractorId", as:"client"});
-// JobInstance.hasMany(JobInstance, {foreignKey:"ContractorId", as:"client"});
-
 ProfileInstance.hasMany(ContractInstance, {foreignKey:"ContractorId", as:"contractor"});
+ContractInstance.belongsTo(ProfileInstance, {foreignKey:"ContractorId", as:"contractor"});
+ ProfileInstance.hasMany(ContractInstance, {foreignKey:"ClientId", as:"client"});
+ ContractInstance.belongsTo(ProfileInstance, {foreignKey:"ContractorId", as:"client"});
+ContractInstance.hasMany(JobInstance, {foreignKey:"ContractorId", as:"client"});
+JobInstance.hasMany(ContractInstance, {foreignKey:"ContractorId", as:"client"});
+
+
 
